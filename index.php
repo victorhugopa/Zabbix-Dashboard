@@ -1,12 +1,14 @@
 <?php
-// load the Zabbix Php API which is included in this build (tested on Zabbix v2.2.2)
-require 'lib/php/ZabbixApiAbstract.class.php';
+// Load ZabbixApi 2.4.3 - https://github.com/confirm/PhpZabbixApi
+// Tested on Zabbix 2.4.7 (victorhugopa)
 require 'lib/php/ZabbixApi.class.php';
-// connect to Zabbix Json API
-$api = new ZabbixApi('http://url-to-zabbix-api/zabbix/api_jsonrpc.php', 'user', 'pass');
-// Set Defaults
+use ZabbixApi\ZabbixApi;
+// Connect to Zabbix API
+$api = new ZabbixApi('http://127.0.0.1/zabbix/api_jsonrpc.php', 'user', 'pass');
+// Define default parameters
+// Use extended output for all further requests
 $api->setDefaultParams(array(
-	'output' => 'extend',
+        'output' => 'extend',
 ));
 ?>
 <!DOCTYPE html>
@@ -18,11 +20,9 @@ $api->setDefaultParams(array(
 	<link rel="stylesheet" type="text/css" href="style/reset.css" />
 	<link rel="stylesheet" type="text/css" href="style/theme-alt.css" />
 	<!-- added the jQuery library for reloading the page and future features -->
-	<script src="lib/js/jquery-2.1.1.min.js"></script>
+	<script src="lib/js/jquery-2.2.0.min.js"></script>
 	<!-- added the masonry js so all blocks are better alligned -->
 	<script src="lib/js/masonry.pkgd.min.js"></script>
-	<!-- Removed this temporary because I disliked the look -->
-	<!--<body class="js-masonry"  data-masonry-options='{ "columnWidth": 250, "itemSelector": ".groupbox" }'>-->
 <body id="bg-two">
 	
 <!-- START GET RENDER DATE - Which will show date and time of generating this file -->
